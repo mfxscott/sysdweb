@@ -14,9 +14,9 @@ public class HelpDB {
           try {
               DriverManager.registerDriver(new Driver());
               //外网数据库
-//              conn = (Connection) DriverManager.getConnection("jdbc:mysql://139.199.205.168:3306/sysddb","mfx","123qwe");
+              conn = (Connection) DriverManager.getConnection("jdbc:mysql://139.199.205.168:3306/sysddb","mfx","123qwe");
              //本地数据库
-              conn = (Connection) DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/sysddb","root","root");
+//              conn = (Connection) DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/sysddb","root","root");
               pst = (PreparedStatement) conn.prepareStatement(sql);
           } catch (SQLException e) {
               e.printStackTrace();
