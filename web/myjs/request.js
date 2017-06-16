@@ -38,10 +38,9 @@ postListString = function () {
         url : httpUrl+"addAccept",
         dataType : "json",
         data : JSON.stringify(GetJsonData(phone,address)),
-
         success : function(jsonResult) {
             // alert(jsonResult.retshow.toString());
-            toast('意见反馈成功');
+            toast('报修成功，我们会尽快处理.');
         },
         error : function(XMLHttpRequest, textStatus,
                          errorThrown) {
@@ -169,6 +168,7 @@ feedbackHttpAjax = function () {
         type : "POST",
         url : httpUrl+"feedback",
         dataType : "json",
+        contentType:"application/json;charset=utf-8",
         data : JSON.stringify(FeedBackGetJsonData(fb_phone,fb_content)),
         success : function(jsonResult) {
             toast('意见反馈成功');

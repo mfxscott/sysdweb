@@ -208,7 +208,6 @@ public class CommonSelect {
 		disrsp.setRetshow("保存成功");
 		return disrsp;
 	}
-
 	/**
 	 * 查询所有已受理维修记录
 	 * @param state   受理状态
@@ -224,11 +223,10 @@ public class CommonSelect {
 		}else{
 			int index = Integer.parseInt(indexpage);
 			if(index == 1){
-				sql = "select * from acc_record where dispose_state="+state+" order by id desc limit 0,10";
+				sql = "select * from sysddb.acc_record where dispose_state="+state+" order by id desc limit 0,10";
 			}else{
-				sql = "select * from acc_record where dispose_state="+state+" order by id desc limit "+((index-1)*10)+","+(index*10);
+				sql = "select * from sysddb.acc_record where dispose_state="+state+" order by id desc limit "+((index-1)*10)+","+(index*10);
 			}
-
 		}
 		System.out.println("查询语句===="+sql);
 		dbh = new HelpDB(sql);
@@ -248,7 +246,6 @@ public class CommonSelect {
 				userinfolist.add(disposee);
 			}
 			if(userinfolist.size()>0){
-
 				lis.setRetcode(resultSuc);
 				lis.setRetshow("查询成功");
 			}else{

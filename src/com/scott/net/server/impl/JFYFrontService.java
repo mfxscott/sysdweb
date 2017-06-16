@@ -1,5 +1,6 @@
 package com.scott.net.server.impl;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -195,7 +196,8 @@ public class JFYFrontService implements IJFYFrontService {
 		String jsondata="";
 		System.out.println("反馈请求报文====="+data);
 		try {
-			repmsg = new JSONObject(data.toString());
+		String dataecode = 	URLEncoder.encode(data, "UTF-8"); //"UTF-8"
+			repmsg = new JSONObject(dataecode.toString());
 			String fbPhone= repmsg.getString("FBPhone");
 			String fbContent = repmsg.getString("FBContent");
 			String fbtime=repmsg.getString("FBTime");

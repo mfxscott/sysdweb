@@ -171,23 +171,28 @@
             <p>你可以通过以下方式和我们取得联系。</p>
         </hgroup>
         <ul class="am-avg-lg-4 am-avg-md-4 am-avg-sm-2 am-thumbnails">
-            <li data-am-scrollspy="{animation:'slide-bottom', delay: 2}"> <i class="am-icon-qq"></i> 271599917
-            </li>
-            <li data-am-scrollspy="{animation:'slide-bottom', delay: 41}"> <i class="am-icon-phone-square"></i> 18682136973
-            </li>
             <li data-am-scrollspy="{animation:'slide-bottom', delay: 51}">
-                <i class="am-icon-weixin"></i> 18682136973
+               <img src="views/IMJ2V2/images/weixinhao.png">
             </li>
-            <li data-am-scrollspy="{animation:'slide-bottom', delay: 211}">
-                <i class="am-icon-envelope"></i> 271599917@qq.com
+            <li data-am-scrollspy="{animation:'slide-bottom', delay: 2}">
+                <p></p>
+                <p></p>
+            <p>QQ号码：271599917</p>
+            <p>联系电话：18682136973</p>
+            <p>联系邮箱： 271599917@qq.com</p>
             </li>
+            <!--<li style="text-align:center" data-am-scrollspy="{animation:'slide-bottom', delay: 2}"> <i class="am-icon-qq" style="display: inline-block;-->
+    <!--list-style: none;"></i> 271599917-->
+            <!--</li>-->
+            <!--<li data-am-scrollspy="{animation:'slide-bottom', delay: 41}"> <i class="am-icon-phone-square"></i> 18682136973-->
+            <!--</li>-->
+            <!---->
+            <!--<li style="text-align:center" data-am-scrollspy="{animation:'slide-bottom', delay: 211}">-->
+                <!--<i class="am-icon-envelope"></i> 271599917@qq.com-->
+            <!--</li>-->
         </ul>
     </section>
 </div>
-
-
-
-
 <footer class="m-footer">
 <div class="m-footer-bottom">
 	<div class="am-container">
@@ -258,13 +263,11 @@ imj2.prototype = {
 						'</a>'+
 					'</div>');
 		$('body').append($backTop);
-
 		$backTop.click(function(){
 			$("html, body").animate({
 				scrollTop: 0
 			}, 120);
 		});
-
 		var timmer = null;
 		$(window).bind("scroll",function() {
             var d = $(document).scrollTop(),
@@ -276,12 +279,9 @@ imj2.prototype = {
             },100);
 	   });
 	}
-
 }
 var imj2 = new imj2();
 //end返回顶部
 </script>
-
-
 </body>
 </html>
