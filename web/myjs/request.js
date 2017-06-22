@@ -3,13 +3,19 @@
 // var httpUrl ="http://192.168.1.102:8080/sysdweb/ESB/UXUNDBF/UXUNJFYFRONT/";
 //图书馆
 // var httpUrl="http://10.0.167.75:8080/sysdweb/ESB/UXUNDBF/UXUNJFYFRONT/";
-// var httpUrl ="http://192.168.24.148/sysdweb/ESB/UXUNDBF/UXUNJFYFRONT/";
+
+
+// var httpUrl ="http://192.168.24.148:8080/sysdweb/ESB/UXUNDBF/UXUNJFYFRONT/";
 var httpUrl ="http://www.hunanyoufu.com/sysdweb/ESB/UXUNDBF/UXUNJFYFRONT/";
 
 // 用户提交受理维修
 postListString = function () {
-    var phone = $("#phone").val();
-    var address=$("#address").val();
+    var phonej = $("#phone").val();
+    var addressj=$("#address").val();
+
+
+    var phone = encodeURI(phonej);
+    var address = encodeURI(addressj);
     if(address ==""){
         alert("请输入家庭住址");
         return true;
@@ -115,8 +121,12 @@ LoginGetJsonData = function (phone,userpsd) {
 //意见反馈Http请求
 feedbackHttpAjax = function () {
 
-    var fb_phone = $("#fb_phone").val();
-    var fb_content=$("#fb_content").val();
+    var fb_phonev = $("#fb_phone").val();
+    var fb_contentv=$("#fb_content").val();
+
+
+    var fb_phone = encodeURI(fb_phonev);
+    var fb_content = encodeURI(fb_contentv);
     if(fb_phone == ""){
         alert("请输入手机号");
         return true;

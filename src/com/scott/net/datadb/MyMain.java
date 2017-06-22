@@ -1,6 +1,5 @@
 package com.scott.net.datadb;
 
-import android.util.Log;
 
 import java.sql.ResultSet;
 

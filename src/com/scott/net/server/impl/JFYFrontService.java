@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.jws.WebService;
 
+import com.scott.net.datadb.LogUtil;
 import com.scott.net.message.*;
 import com.scott.net.message.dispose.DisposeEntity;
 import com.scott.net.message.dispose.ListAccDisposeEntity;
@@ -98,7 +99,7 @@ public class JFYFrontService implements IJFYFrontService {
 	 */
 	@Override
 	public String addAccept(String data) {
-		System.out.println("受理请求报文======="+data);
+		LogUtil.LogDebug("报修请求数据"+data.toString());
 		RspMsgEntity disrsp = new RspMsgEntity();
 		JSONObject	repmsg = null;
 		String jsondata = null;
@@ -121,7 +122,7 @@ public class JFYFrontService implements IJFYFrontService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("受理返回报文======="+jsondata);
+		LogUtil.LogDebug("报修请求数据"+jsondata.toString());
 		return jsondata;
 	}
 	/**
@@ -194,10 +195,10 @@ public class JFYFrontService implements IJFYFrontService {
 		RspMsgEntity disrsp = new RspMsgEntity();
 		JSONObject repmsg;
 		String jsondata="";
-		System.out.println("反馈请求报文====="+data);
+		LogUtil.LogDebug("意见反馈请求数据"+data.toString());
 		try {
-		String dataecode = 	URLEncoder.encode(data, "UTF-8"); //"UTF-8"
-			repmsg = new JSONObject(dataecode.toString());
+//		String dataecode = 	URLEncoder.encode(data, "UTF-8"); //"UTF-8"
+			repmsg = new JSONObject(data.toString());
 			String fbPhone= repmsg.getString("FBPhone");
 			String fbContent = repmsg.getString("FBContent");
 			String fbtime=repmsg.getString("FBTime");
@@ -227,13 +228,13 @@ public class JFYFrontService implements IJFYFrontService {
 				disrsp.setRetshow("反馈失败");
 				jsondata  = ObjectChangeJsonData.objectToJson(disrsp);
 			}
-			System.out.println("反馈返回数据===="+jsondata);
+			LogUtil.LogDebug("意见反馈返回数据"+jsondata.toString());
 			return jsondata;
 		} catch (JSONException e) {
-			System.out.println("===="+e.toString());
+			LogUtil.LogDebug("异常"+e.toString());
 			e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println("===="+e.toString());
+			LogUtil.LogDebug("异常"+e.toString());
 			e.printStackTrace();
 		}
 		return jsondata;

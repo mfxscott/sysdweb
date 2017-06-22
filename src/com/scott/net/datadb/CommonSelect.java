@@ -1,6 +1,8 @@
 package com.scott.net.datadb;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.List;
 import com.scott.net.message.dispose.DisposeEntity;
 import com.scott.net.message.dispose.ListAccDisposeEntity;
 import com.scott.net.server.ObjectChangeJsonData;
+import org.jfree.util.Log;
 import org.json.JSONException;
 
 import com.scott.net.message.QurAddress;
@@ -167,10 +170,15 @@ public class CommonSelect {
 		try {
 			//生产需要数据库名称.表名
 			String sql = null;
+
 			try {
+				String phone = URLDecoder.decode((String) jsonObject.get("accPhone"), "UTF-8");
+				String address = URLDecoder.decode((String) jsonObject.get("accAddress"), "UTF-8");
 				sql = "INSERT INTO sysddb.acc_record (acc_time, dispose_starttime, dispose_endtime, acc_phone, acc_address, dispose_staff, dispose_type, dispose_state) " +
-                        "VALUES ('"+jsonObject.get("accTime")+"', '"+jsonObject.get("disStartTime")+"', '"+jsonObject.get("disEndTime")+"', '"+jsonObject.get("accPhone")+"', '"+jsonObject.get("accAddress")+"', '"+jsonObject.get("disStaff")+"', '"+jsonObject.get("disType")+"', '"+jsonObject.get("disState")+"')";
+                        "VALUES ('"+jsonObject.get("accTime")+"', '"+jsonObject.get("disStartTime")+"', '"+jsonObject.get("disEndTime")+"', '"+phone+"', '"+address+"', '"+jsonObject.get("disStaff")+"', '"+jsonObject.get("disType")+"', '"+jsonObject.get("disState")+"')";
 			} catch (JSONException e) {
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
 //			String sql = "INSERT INTO acc_record (acc_time, dispose_starttime, dispose_endtime, acc_phone, acc_address, dispose_staff, dispose_type, dispose_state) VALUES ('21231', '123', '123', '123', '123', '123', '123', '123')";
@@ -180,9 +188,9 @@ public class CommonSelect {
 			result = resultSuc;
 		} catch (SQLException e) {
 			result = resultSqlError;
+			e.printStackTrace();
 			return result;
 		}
-
 		return result;
 	}
 	/**
@@ -218,6 +226,7 @@ public class CommonSelect {
 		ListAccDisposeEntity lis = new ListAccDisposeEntity();
 		List<DisposeEntity> userinfolist = new ArrayList<DisposeEntity>();
 		DisposeEntity disposee = null;
+
 		if(state.equals("4")){
 			sql = "select * from acc_record";
 		}else{
@@ -312,9 +321,12 @@ public class CommonSelect {
 	 */
 	public static String insertFeedback(String fbphone,String fbcontent,String time,String fbId){
 		try {
+			LogUtil.LogDebug("请求参数==="+fbcontent);
+			String fbphoneu = URLDecoder.decode(fbphone, "UTF-8");
+			String fbcontentu = URLDecoder.decode(fbcontent, "UTF-8");
 			//生产需要 数据库名称
 //			String sql = "INSERT INTO feedback (fb_phone, fb_content, fb_time, fb_userid) VALUES ('"+fbphone+"','"+fbcontent+"','"+time+"','"+fbId+"')";
-			String sql = "INSERT INTO sysddb.feedback (fb_phone, fb_content, fb_time, fb_userid) VALUES ('"+fbphone+"','"+fbcontent+"','"+time+"','"+fbId+"')";
+			String sql = "INSERT INTO sysddb.feedback (fb_phone, fb_content, fb_time, fb_userid) VALUES ('"+fbphoneu+"','"+fbcontentu+"','"+time+"','"+fbId+"')";
 
 			dbh = new HelpDB(sql);
 			dbh.pst.execute(sql);
@@ -324,6 +336,8 @@ public class CommonSelect {
 			e.printStackTrace();
 			System.out.println("意见反馈222======"+e.toString());
 			return resultSqlError;
+		}catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
 		}
 		return "0000";
 	}
